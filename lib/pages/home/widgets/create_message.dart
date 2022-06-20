@@ -1,5 +1,7 @@
+import 'package:cityhive_homework/pages/home/home_bloc.dart';
 import 'package:cityhive_homework/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../home_states_events.dart';
 
 class CreateMeassage extends StatefulWidget {
@@ -39,6 +41,7 @@ class _CreateMeassageState extends State<CreateMeassage> {
               ),
               child: TextFormField(
                   keyboardType: TextInputType.phone,
+                  initialValue: "+972509005070",
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -107,7 +110,12 @@ class _CreateMeassageState extends State<CreateMeassage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Processing Data')),
                     );
-                  } else {}
+                    context.read<HomeCubit>().createMessages(formValues);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('please fill fields'),
+                    ));
+                  }
                 },
                 style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.blue[900],

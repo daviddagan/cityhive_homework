@@ -20,7 +20,7 @@ class MessagesRepository {
   /// Local   Remote
   ///   Repository
   /// -----------------
-  /// 
+  ///
   Future<List<Message>?> loadMessagesDb() async {
     List<Message> m = await _remote.getMessages();
     return m;
@@ -34,7 +34,8 @@ class MessagesRepository {
     // });
   }
 
-  Future createMessage(Message message)async{
+  Future createMessage(Message message) async {
+    print(message.toJson());
     await _remote.createMessage(message);
   }
 }

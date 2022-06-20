@@ -8,9 +8,9 @@ const createUser = (message) => {
     console.log("message", message)
     return client.messages
         .create({
-            body: message,
+            body: message.body,
             from: phoneNumber,
-            to: '+15558675310'
+            to: message.to
         });
 
 
