@@ -13,8 +13,12 @@ class LoadingState extends BaseHomeState {}
 
 class MessagesListResult extends BaseHomeState {
   final List<Message> messages;
-
   MessagesListResult(this.messages);
+}
+
+class CreateMessages extends BaseHomeState {
+  final int messageLength;
+  CreateMessages(this.messageLength);
 }
 
 class ErrorState extends BaseHomeState {

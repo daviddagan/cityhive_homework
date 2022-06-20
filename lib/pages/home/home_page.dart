@@ -20,15 +20,9 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
   void onItemTapped(int index) {
-    selectedIndex = index;
-    // switch (index) {
-    //   case 0:
-    //     break;
-    //   case 1:
-    //     context.read<HomeCubit>().getMessages();
-    //     break;
-    // }
-    setState(() {});
+    setState(() {
+      selectedIndex = index;
+    });
   }
 
   @override
@@ -42,11 +36,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: SizeConfig.spacing_small_horizontal, vertical: SizeConfig.spacing_small_vertical),
-        child: BlocProvider<HomeCubit>(
-          create: (context) => getIt.get<HomeCubit>(),
-          child:  _messagesBlocHandler()
-        ),
+        padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth / 4, vertical: SizeConfig.screenHeight / 8),
+        child: BlocProvider<HomeCubit>(create: (context) => getIt.get<HomeCubit>(), child: _messagesBlocHandler()),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -64,14 +55,12 @@ class _HomePageState extends State<HomePage> {
               label: "Message History"),
         ],
         currentIndex: selectedIndex,
-        fixedColor: Colors.deepPurple,
+        fixedColor: Colors.black,
         onTap: onItemTapped,
-        selectedLabelStyle: const TextStyle(color: Colors.red, fontSize: 20),
+        selectedLabelStyle: const TextStyle(color: Colors.red, fontSize: 15),
       ),
     );
   }
-
- 
 
   Widget _messagesBlocHandler() {
     return BlocBuilder<HomeCubit, BaseHomeState>(

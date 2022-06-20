@@ -39,12 +39,16 @@ class HomeCubit extends Cubit<BaseHomeState> {
     }
   }
 
-  createMessages(Map<String, String> formValues) async {
+  updateMessagesLength(int len){
+    emit(CreateMessages(len));
+  }
+
+  createMessages({String? phone, String? body}) async {
     emit(LoadingState());
     try {
-      Message message = Message(phoneNumber: formValues["phone"], messageBody: formValues["body"]);
+      Message message = Message(phoneNumber: phone, messageBody: body);
       await _messagesRepository.createMessage(message);
-      // emit(MessagesListResult(messages ?? []));
+      emit(CreateMessages(0));
     } on DioError catch (dioError) {
       final code = dioError.response?.statusCode;
       final error = dioError.error;
