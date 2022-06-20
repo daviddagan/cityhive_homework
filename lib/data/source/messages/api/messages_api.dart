@@ -11,5 +11,5 @@ abstract class MessagesApi {
   @GET("messages/")
   Future<List<Message>> getMessages();
   @POST("messages/")
-  Future createMessage(Message message);
+  Future createMessage(@Body() Message message);
 }

@@ -1,7 +1,7 @@
 import 'package:cityhive_homework/pages/home/home_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cityhive_homework/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../home_states_events.dart';
 
 class CreateMeassage extends StatefulWidget {

@@ -1,5 +1,7 @@
 import 'package:cityhive_homework/data/model/message/message.dart';
+import 'package:cityhive_homework/pages/home/home_bloc.dart';
 import 'package:cityhive_homework/utils/size_config.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import '../home_states_events.dart';
 
@@ -20,13 +22,39 @@ class MessagesListView extends StatelessWidget {
         final message = (state as ErrorState).message;
         return _errorState(message);
       default: //will be InitialState
-        return _firstTime();
+        return _firstTime(context);
     }
   }
 
-  Widget _firstTime() {
-    return const Center(
-      child: Text("Please press at the top button to load messages :)"),
+  Widget _firstTime(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () => context.read<HomeCubit>().getMessages(),
+        style: ElevatedButton.styleFrom(
+          primary: const Color.fromRGBO(114, 137, 218, 1),
+          elevation: 30,
+          shape: const CircleBorder(),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.indigo,
+              shape: BoxShape.circle,
+            ),
+            constraints: const BoxConstraints(maxWidth: 180, maxHeight: 180), // min sizes for Material buttons
+            alignment: Alignment.center,
+            child: const Text(
+              'Show Messages History',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -71,7 +99,7 @@ class MessagesListView extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(vertical: SizeConfig.blockSizeVertical),
           child: Container(
-            height: SizeConfig.spacing_extra_vertical,
+            height: SizeConfig.screenHeight / 5,
             width: SizeConfig.screenWidth,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(

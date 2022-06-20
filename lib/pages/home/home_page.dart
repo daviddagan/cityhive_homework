@@ -45,21 +45,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.symmetric(horizontal: SizeConfig.spacing_small_horizontal, vertical: SizeConfig.spacing_small_vertical),
         child: BlocProvider<HomeCubit>(
           create: (context) => getIt.get<HomeCubit>(),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _clearButton(),
-                  _button(),
-                ],
-              ),
-              // SizedBox(
-              //   height: SizeConfig.spacing_medium_vertical,
-              // ),
-              Expanded(child: _messagesBlocHandler()),
-            ],
-          ),
+          child:  _messagesBlocHandler()
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -85,34 +71,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _button() {
-    return BlocBuilder<HomeCubit, BaseHomeState>(builder: (context, state) {
-      final enable = state is! LoadingState;
-      return CustomButton(
-        enable: enable,
-        text: "load messages",
-        color: enable ? Colors.blue : Colors.grey.withOpacity(0.5),
-        onClick: () => context.read<HomeCubit>().getMessages(),
-      );
-    });
-  }
-
-  Widget _clearButton() {
-    return BlocBuilder<HomeCubit, BaseHomeState>(
-      builder: (context, state) {
-        final opacity = state is MessagesListResult && (state).messages.isNotEmpty ? 1.0 : 0.0;
-        return AnimatedOpacity(
-          opacity: opacity,
-          duration: const Duration(milliseconds: 300),
-          child: CustomButton(
-            enable: opacity == 1,
-            text: "clear",
-            onClick: () => context.read<HomeCubit>().clearList(),
-          ),
-        );
-      },
-    );
-  }
+ 
 
   Widget _messagesBlocHandler() {
     return BlocBuilder<HomeCubit, BaseHomeState>(
