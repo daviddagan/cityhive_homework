@@ -1,0 +1,23 @@
+{
+  "name": "tut_end_point",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "http-errors": "latest",
+    "twilio": "^3.77.3"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5"
+  }
+}
