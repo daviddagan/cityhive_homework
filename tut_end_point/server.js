@@ -1,5 +1,5 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const helmet = require("helmet");
 const createError = require("http-errors");
 const dotenv = require('dotenv');
@@ -8,6 +8,7 @@ dotenv.config();
 
 const app = express();
 app.use(helmet());
+app.use(cors());
 app.use(express.json());
 
 require("./startup/routes")(app);
