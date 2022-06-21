@@ -4,7 +4,7 @@ const phoneNumber = process.env.TWILIO_PHONE_NUMBER;
 const client = require('twilio')(accountSid, authToken);
 
 
-const createUser = (message) => {
+const createMessage = (message) => {
     console.log("message", message)
     return client.messages
         .create({
@@ -17,12 +17,12 @@ const createUser = (message) => {
 };
 
 
-const getAllusers = async () => {
+const getAllmessages = async () => {
     return await client.messages.list();
 };
 
 
 module.exports = {
-    createUser,
-    getAllusers,
+    createMessage,
+    getAllmessages,
 };

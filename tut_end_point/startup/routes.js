@@ -1,5 +1,5 @@
-const users = require("../routes/usersRoute");
+const messages = require("../routes/messageRoute");
 
 module.exports = function (app) {
-    app.use("/api/messages", users);
+    app.use("/api/messages", messages);
 };
